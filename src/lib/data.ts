@@ -1,28 +1,28 @@
 import type { Service, Staff, Review } from "./types";
 
-// Tırnak close-up görselleri (yüz yok, sadece eller/tırnaklar)
+// Tırnak close-up görselleri — her biri farklı
 const nailImages = {
   protez: "https://images.unsplash.com/photo-1604654894610-df63bc536371?w=800&q=80",
   jel: "https://images.unsplash.com/photo-1632345031435-8727f6897d53?w=800&q=80",
-  shellac: "https://images.unsplash.com/photo-1604654894610-df63bc536371?w=800&q=80",
+  shellac: "https://images.unsplash.com/photo-1519014816548-bf5fe059798b?w=800&q=80",
   nailArt: "https://images.unsplash.com/photo-1607779097040-26e80aa78e66?w=800&q=80",
-  manikur: "https://images.unsplash.com/photo-1610992015732-2449b0ae0692?w=800&q=80",
-  pedikur: "https://images.unsplash.com/photo-1519014816548-bf5fe059798b?w=800&q=80",
-  onarim: "https://images.unsplash.com/photo-1632345031435-8727f6897d53?w=800&q=80",
-  bakim: "https://images.unsplash.com/photo-1607779097040-26e80aa78e66?w=800&q=80",
+  manikur: "https://images.unsplash.com/photo-1440557653082-e67ffad744c0?w=800&q=80",
+  pedikur: "https://images.unsplash.com/photo-1636718282214-1a7b2b2e5e6a?w=800&q=80",
+  onarim: "https://images.unsplash.com/photo-1610992015779-82c1e9427996?w=800&q=80",
+  bakim: "https://images.unsplash.com/photo-1577400706078-03cf12f0276f?w=800&q=80",
 };
 
-// Makyaj görselleri (close-up, ürün bazlı)
+// Makyaj görselleri — ürün/uygulama close-up
 const makeupImages = {
   kas: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=800&q=80",
   dudak: "https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=800&q=80",
   gunluk: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=800&q=80",
-  gelin: "https://images.unsplash.com/photo-1457972729786-0411a3b2b626?w=800&q=80",
+  gelin: "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=800&q=80",
   kirpikLifting: "https://images.unsplash.com/photo-1583001931096-959e9a1a6223?w=800&q=80",
-  ipekKirpik: "https://images.unsplash.com/photo-1512207846876-bb54ef5056fe?w=800&q=80",
+  ipekKirpik: "https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?w=800&q=80",
 };
 
-// Cilt bakımı görselleri (close-up, tedavi bazlı)
+// Cilt bakımı görselleri — tedavi close-up
 const skinImages = {
   klasik: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&q=80",
   hydra: "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=800&q=80",
@@ -379,8 +379,8 @@ export const galleryImages = [
     alt: "Makyaj ürünleri",
   },
   {
-    src: "https://images.unsplash.com/photo-1610992015732-2449b0ae0692?w=800&q=80",
-    alt: "Manikür uygulaması",
+    src: "https://images.unsplash.com/photo-1577400706078-03cf12f0276f?w=800&q=80",
+    alt: "Tırnak bakımı",
   },
   {
     src: "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=800&q=80",
@@ -391,11 +391,11 @@ export const galleryImages = [
     alt: "Makyaj fırçaları ve ürünler",
   },
   {
-    src: "https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=800&q=80",
-    alt: "Ruj ve dudak bakımı",
+    src: "https://images.unsplash.com/photo-1519014816548-bf5fe059798b?w=800&q=80",
+    alt: "Oje uygulaması",
   },
   {
-    src: "https://images.unsplash.com/photo-1519014816548-bf5fe059798b?w=800&q=80",
+    src: "https://images.unsplash.com/photo-1440557653082-e67ffad744c0?w=800&q=80",
     alt: "Tırnak bakımı detay",
   },
 ];
