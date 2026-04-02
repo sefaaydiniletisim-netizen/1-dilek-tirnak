@@ -3,15 +3,15 @@
 import { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { Clock, ArrowRight } from "lucide-react";
+import { Clock, ArrowRight, Sparkles } from "lucide-react";
 import AnimatedSection from "./AnimatedSection";
 import { services } from "@/lib/data";
 import type { ServiceCategory } from "@/lib/types";
 
-const categories: { key: ServiceCategory; label: string }[] = [
-  { key: "tirnak", label: "Tırnak" },
-  { key: "makyaj", label: "Makyaj" },
-  { key: "cilt", label: "Cilt Bakımı" },
+const categories: { key: ServiceCategory; label: string; icon: string }[] = [
+  { key: "tirnak", label: "Tirnak", icon: "💅" },
+  { key: "makyaj", label: "Makyaj", icon: "✨" },
+  { key: "cilt", label: "Cilt Bakimi", icon: "🌸" },
 ];
 
 function formatPrice(price: number): string {
@@ -31,27 +31,39 @@ export default function Services() {
   const filtered = services.filter((s) => s.category === activeCategory);
 
   return (
-    <section id="hizmetler" className="py-24 sm:py-32 bg-card">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="hizmetler" className="relative py-24 sm:py-32 overflow-hidden">
+      {/* Background gradient */}
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-rose-light/30 to-lavender-light/20" />
+
+      {/* Decorative elements */}
+      <div className="absolute top-20 left-0 w-64 h-64 rounded-full bg-primary/5 blur-3xl" />
+      <div className="absolute bottom-20 right-0 w-72 h-72 rounded-full bg-accent/5 blur-3xl" />
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection className="text-center mb-16">
+          <div className="flex items-center justify-center gap-3 mb-6">
+            <div className="w-12 h-px bg-gradient-to-r from-transparent to-primary" />
+            <Sparkles size={16} className="text-primary" />
+            <div className="w-12 h-px bg-gradient-to-l from-transparent to-primary" />
+          </div>
           <p className="font-body text-xs tracking-[0.3em] text-primary-dark uppercase mb-4">
             Hizmetlerimiz
           </p>
           <h2 className="font-heading italic text-3xl sm:text-4xl lg:text-5xl text-foreground">
-            Size Özel Bakım
+            Size Ozel <span className="gradient-text">Bakim</span>
           </h2>
         </AnimatedSection>
 
         {/* Category tabs */}
-        <AnimatedSection delay={0.1} className="flex justify-center gap-2 sm:gap-4 mb-12">
+        <AnimatedSection delay={0.1} className="flex justify-center gap-3 sm:gap-4 mb-12">
           {categories.map((cat) => (
             <button
               key={cat.key}
               onClick={() => setActiveCategory(cat.key)}
-              className={`px-5 sm:px-8 py-2.5 font-body text-sm tracking-wide rounded-lg transition-all duration-300 ${
+              className={`relative px-6 sm:px-8 py-3 font-body text-sm tracking-wide rounded-full transition-all duration-500 ${
                 activeCategory === cat.key
-                  ? "bg-primary text-white"
-                  : "bg-transparent text-text-light border border-border hover:border-primary hover:text-primary-dark"
+                  ? "bg-gradient-to-r from-primary to-accent text-white shadow-[0_4px_20px_rgba(212,168,176,0.4)]"
+                  : "bg-card text-text-light border border-border hover:border-primary/40 hover:text-primary-dark hover:shadow-md"
               }`}
             >
               {cat.label}
@@ -67,12 +79,15 @@ export default function Services() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="grid sm:grid-cols-2 gap-4 sm:gap-6"
+            className="grid sm:grid-cols-2 gap-5 sm:gap-6"
           >
-            {filtered.map((service) => (
-              <div
+            {filtered.map((service, i) => (
+              <motion.div
                 key={service.id}
-                className="group flex flex-col sm:flex-row bg-background border border-border rounded-xl overflow-hidden hover:border-primary/30 transition-colors duration-300"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.08 }}
+                className="group relative flex flex-col sm:flex-row bg-card rounded-2xl overflow-hidden border border-border/50 hover:border-primary/30 hover:shadow-[0_10px_40px_rgba(212,168,176,0.15)] transition-all duration-500"
               >
                 {/* Image */}
                 <div className="relative w-full sm:w-48 h-48 sm:h-auto shrink-0 overflow-hidden">
@@ -80,16 +95,21 @@ export default function Services() {
                     src={service.image_url || ""}
                     alt={service.name}
                     fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
                     sizes="(max-width: 640px) 100vw, 192px"
                   />
-                  <div className="absolute inset-0 bg-[#C4A882]/5" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#3D2B1F]/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                  {/* Price badge */}
+                  <div className="absolute top-3 right-3 px-3 py-1.5 rounded-full glass text-xs font-body font-semibold text-primary-dark border border-primary/20">
+                    {formatPrice(service.price)}
+                  </div>
                 </div>
 
                 {/* Content */}
                 <div className="flex-1 p-5 sm:p-6 flex flex-col justify-between">
                   <div>
-                    <h3 className="font-heading text-xl text-foreground mb-2">
+                    <h3 className="font-heading text-xl text-foreground mb-2 group-hover:text-primary-dark transition-colors">
                       {service.name}
                     </h3>
                     <p className="font-body text-sm text-text-light leading-relaxed mb-4">
@@ -103,26 +123,22 @@ export default function Services() {
                         {formatDuration(service.duration_minutes)}
                       </span>
                     </div>
-                    <span className="font-body font-semibold text-primary-dark">
-                      {formatPrice(service.price)}
-                    </span>
+                    <a
+                      href="#randevu"
+                      className="flex items-center gap-1 text-xs font-body text-primary-dark hover:text-primary transition-colors group/link"
+                    >
+                      Randevu Al
+                      <ArrowRight size={12} className="group-hover/link:translate-x-0.5 transition-transform" />
+                    </a>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </motion.div>
         </AnimatePresence>
 
-        {/* CTA */}
-        <AnimatedSection delay={0.2} className="text-center mt-12">
-          <a
-            href="#randevu"
-            className="inline-flex items-center gap-2 font-body text-sm text-primary-dark hover:text-foreground transition-colors tracking-wide"
-          >
-            Hemen Randevu Alın
-            <ArrowRight size={16} />
-          </a>
-        </AnimatedSection>
+        {/* Section divider */}
+        <div className="section-divider mt-20" />
       </div>
     </section>
   );

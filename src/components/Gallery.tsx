@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import { X, ChevronLeft, ChevronRight, ZoomIn } from "lucide-react";
 import AnimatedSection from "./AnimatedSection";
 import { galleryImages } from "@/lib/data";
 
@@ -35,37 +35,46 @@ export default function Gallery() {
   }
 
   return (
-    <section id="galeri" className="py-24 sm:py-32 bg-background">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="galeri" className="relative py-24 sm:py-32 overflow-hidden">
+      {/* Background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-rose-light/10 via-background to-lavender-light/10" />
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection className="text-center mb-16">
+          <div className="flex items-center justify-center gap-3 mb-6">
+            <div className="w-12 h-px bg-gradient-to-r from-transparent to-primary" />
+            <div className="w-2 h-2 rounded-full bg-primary" />
+            <div className="w-12 h-px bg-gradient-to-l from-transparent to-primary" />
+          </div>
           <p className="font-body text-xs tracking-[0.3em] text-primary-dark uppercase mb-4">
             Galeri
           </p>
           <h2 className="font-heading italic text-3xl sm:text-4xl lg:text-5xl text-foreground">
-            Çalışmalarımız
+            Calismalarimiz
           </h2>
         </AnimatedSection>
 
         {/* Masonry grid */}
-        <div className="columns-2 sm:columns-3 gap-3 sm:gap-4">
+        <div className="columns-2 sm:columns-3 gap-4 sm:gap-5">
           {galleryImages.map((img, i) => (
             <AnimatedSection key={i} delay={i * 0.05}>
               <button
                 onClick={() => openLightbox(i)}
-                className="group relative w-full mb-3 sm:mb-4 block overflow-hidden rounded-lg"
+                className="group relative w-full mb-4 sm:mb-5 block overflow-hidden rounded-2xl"
               >
                 <Image
                   src={img.src}
                   alt={img.alt}
                   width={400}
                   height={i % 3 === 0 ? 500 : i % 3 === 1 ? 400 : 350}
-                  className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                  className="w-full h-auto object-cover transition-all duration-700 group-hover:scale-[1.05] group-hover:brightness-90"
                   sizes="(max-width: 640px) 50vw, 33vw"
                 />
-                <div className="absolute inset-0 bg-[#2A2118]/0 group-hover:bg-[#2A2118]/30 transition-colors duration-300 flex items-center justify-center">
-                  <span className="font-body text-xs tracking-[0.15em] text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 uppercase">
-                    Detay Gör
-                  </span>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#3D2B1F]/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500" />
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+                  <div className="w-12 h-12 rounded-full glass flex items-center justify-center border border-white/30">
+                    <ZoomIn size={18} className="text-white" />
+                  </div>
                 </div>
               </button>
             </AnimatedSection>
@@ -80,7 +89,7 @@ export default function Gallery() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-[#2A2118]/90 flex items-center justify-center p-4"
+            className="fixed inset-0 z-50 bg-[#3D2B1F]/95 backdrop-blur-sm flex items-center justify-center p-4"
             onClick={closeLightbox}
           >
             <button
@@ -88,10 +97,10 @@ export default function Gallery() {
                 e.stopPropagation();
                 closeLightbox();
               }}
-              className="absolute top-4 right-4 p-2 text-white/70 hover:text-white transition-colors"
+              className="absolute top-6 right-6 w-10 h-10 rounded-full glass flex items-center justify-center text-white/70 hover:text-white transition-colors border border-white/10"
               aria-label="Kapat"
             >
-              <X size={24} />
+              <X size={20} />
             </button>
 
             <button
@@ -99,10 +108,10 @@ export default function Gallery() {
                 e.stopPropagation();
                 prev();
               }}
-              className="absolute left-4 p-2 text-white/70 hover:text-white transition-colors"
-              aria-label="Önceki"
+              className="absolute left-4 w-10 h-10 rounded-full glass flex items-center justify-center text-white/70 hover:text-white transition-colors border border-white/10"
+              aria-label="Onceki"
             >
-              <ChevronLeft size={28} />
+              <ChevronLeft size={22} />
             </button>
 
             <motion.div
@@ -121,7 +130,7 @@ export default function Gallery() {
                 alt={galleryImages[lightboxIndex].alt}
                 width={1400}
                 height={900}
-                className="w-full h-auto max-h-[85vh] object-contain rounded-lg"
+                className="w-full h-auto max-h-[85vh] object-contain rounded-2xl"
                 sizes="90vw"
               />
             </motion.div>
@@ -131,11 +140,18 @@ export default function Gallery() {
                 e.stopPropagation();
                 next();
               }}
-              className="absolute right-4 p-2 text-white/70 hover:text-white transition-colors"
+              className="absolute right-4 w-10 h-10 rounded-full glass flex items-center justify-center text-white/70 hover:text-white transition-colors border border-white/10"
               aria-label="Sonraki"
             >
-              <ChevronRight size={28} />
+              <ChevronRight size={22} />
             </button>
+
+            {/* Image counter */}
+            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full glass border border-white/10">
+              <span className="font-body text-xs text-white/70">
+                {lightboxIndex + 1} / {galleryImages.length}
+              </span>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

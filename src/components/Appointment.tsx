@@ -10,9 +10,11 @@ import {
   Calendar,
   User,
   Sparkles,
+  Heart,
 } from "lucide-react";
 import { services, staff } from "@/lib/data";
 import type { ServiceCategory } from "@/lib/types";
+import AnimatedSection from "./AnimatedSection";
 
 const steps = [
   { label: "Hizmet", icon: Sparkles },
@@ -22,9 +24,9 @@ const steps = [
 ];
 
 const categoryLabels: Record<ServiceCategory, string> = {
-  tirnak: "Tırnak",
+  tirnak: "Tirnak",
   makyaj: "Makyaj",
-  cilt: "Cilt Bakımı",
+  cilt: "Cilt Bakimi",
 };
 
 function formatPrice(price: number): string {
@@ -61,10 +63,10 @@ function getNext14Days(): Date[] {
   return days;
 }
 
-const dayNames = ["Paz", "Pzt", "Sal", "Çar", "Per", "Cum", "Cmt"];
+const dayNames = ["Paz", "Pzt", "Sal", "Car", "Per", "Cum", "Cmt"];
 const monthNames = [
-  "Oca", "Şub", "Mar", "Nis", "May", "Haz",
-  "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara",
+  "Oca", "Sub", "Mar", "Nis", "May", "Haz",
+  "Tem", "Agu", "Eyl", "Eki", "Kas", "Ara",
 ];
 
 export default function Appointment() {
@@ -90,7 +92,6 @@ export default function Appointment() {
 
   const timeSlots = useMemo(() => {
     if (!service) return [];
-    // Simulate some slots being unavailable
     const allSlots = generateTimeSlots(9, 20, service.duration_minutes);
     const bookedIndices = new Set([2, 5, 8, 11]);
     return allSlots.map((time, i) => ({
@@ -131,7 +132,6 @@ export default function Appointment() {
         setIsSubmitted(true);
       }
     } catch {
-      // Fallback: show success anyway for demo
       setIsSubmitted(true);
     } finally {
       setIsSubmitting(false);
@@ -140,30 +140,40 @@ export default function Appointment() {
 
   if (isSubmitted) {
     return (
-      <section id="randevu" className="py-24 sm:py-32 bg-card">
-        <div className="max-w-2xl mx-auto px-4 text-center">
+      <section id="randevu" className="relative py-24 sm:py-32 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-gold-light/20 to-background" />
+        <div className="relative max-w-2xl mx-auto px-4 text-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="p-12 border border-border rounded-xl bg-background"
+            className="p-12 rounded-3xl bg-card border border-border/50 shadow-[0_20px_60px_rgba(212,168,176,0.15)]"
           >
-            <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-primary/10 flex items-center justify-center">
-              <Check size={28} className="text-primary-dark" />
-            </div>
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ delay: 0.2, type: "spring" }}
+              className="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center"
+            >
+              <Heart size={32} className="text-white" />
+            </motion.div>
             <h3 className="font-heading italic text-2xl sm:text-3xl text-foreground mb-4">
-              Randevunuz Oluşturuldu
+              Randevunuz Olusturuldu
             </h3>
             <p className="font-body text-text-light leading-relaxed mb-6">
-              Randevunuzdan 1 gün önce ve 1 saat önce hatırlatma bildirimi
-              alacaksınız.
+              Sizinle gorusmek icin sabırsizlaniyoruz!
             </p>
-            <div className="p-4 bg-accent-light/30 rounded-lg text-sm font-body text-foreground">
-              <p className="font-semibold">{service?.name}</p>
-              <p className="text-text-light mt-1">
+            <div className="p-5 bg-gradient-to-r from-rose-light/30 to-lavender-light/30 rounded-2xl border border-primary/10">
+              <p className="font-body text-sm text-foreground font-medium">
+                {service?.name}
+              </p>
+              <p className="font-body text-xs text-text-light mt-1">
                 {staffMember?.name} ile{" "}
                 {selectedDate &&
                   `${selectedDate.getDate()} ${monthNames[selectedDate.getMonth()]}`}{" "}
                 {selectedTime}
+              </p>
+              <p className="font-body text-sm font-semibold text-primary-dark mt-2">
+                {service && formatPrice(service.price)}
               </p>
             </div>
           </motion.div>
@@ -173,16 +183,26 @@ export default function Appointment() {
   }
 
   return (
-    <section id="randevu" className="py-24 sm:py-32 bg-card">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6">
-        <div className="text-center mb-12">
+    <section id="randevu" className="relative py-24 sm:py-32 overflow-hidden">
+      {/* Background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-gold-light/20 to-background" />
+      <div className="absolute top-20 left-0 w-72 h-72 rounded-full bg-primary/5 blur-3xl" />
+      <div className="absolute bottom-20 right-0 w-72 h-72 rounded-full bg-accent/5 blur-3xl" />
+
+      <div className="relative max-w-3xl mx-auto px-4 sm:px-6">
+        <AnimatedSection className="text-center mb-12">
+          <div className="flex items-center justify-center gap-3 mb-6">
+            <div className="w-12 h-px bg-gradient-to-r from-transparent to-gold" />
+            <Calendar size={16} className="text-gold" />
+            <div className="w-12 h-px bg-gradient-to-l from-transparent to-gold" />
+          </div>
           <p className="font-body text-xs tracking-[0.3em] text-primary-dark uppercase mb-4">
             Online Randevu
           </p>
           <h2 className="font-heading italic text-3xl sm:text-4xl lg:text-5xl text-foreground">
-            Randevu Alın
+            Randevu <span className="gradient-text">Alin</span>
           </h2>
-        </div>
+        </AnimatedSection>
 
         {/* Step indicator */}
         <div className="flex items-center justify-center gap-2 sm:gap-4 mb-12">
@@ -191,12 +211,12 @@ export default function Appointment() {
             return (
               <div key={s.label} className="flex items-center gap-2 sm:gap-4">
                 <div
-                  className={`flex items-center gap-2 px-3 py-1.5 rounded-lg transition-colors ${
+                  className={`flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-500 ${
                     i === step
-                      ? "bg-primary text-white"
+                      ? "bg-gradient-to-r from-primary to-accent text-white shadow-[0_4px_15px_rgba(212,168,176,0.4)]"
                       : i < step
                         ? "bg-primary/10 text-primary-dark"
-                        : "bg-background text-text-light border border-border"
+                        : "bg-card text-text-light border border-border/50"
                   }`}
                 >
                   <Icon size={14} />
@@ -206,8 +226,8 @@ export default function Appointment() {
                 </div>
                 {i < steps.length - 1 && (
                   <div
-                    className={`w-6 sm:w-10 h-px ${
-                      i < step ? "bg-primary" : "bg-border"
+                    className={`w-6 sm:w-10 h-px transition-colors duration-500 ${
+                      i < step ? "bg-gradient-to-r from-primary to-accent" : "bg-border"
                     }`}
                   />
                 )}
@@ -217,7 +237,7 @@ export default function Appointment() {
         </div>
 
         {/* Step content */}
-        <div className="border border-border rounded-xl bg-background p-6 sm:p-8">
+        <div className="rounded-3xl bg-card border border-border/50 shadow-[0_10px_40px_rgba(212,168,176,0.08)] p-6 sm:p-8">
           <AnimatePresence mode="wait">
             {step === 0 && (
               <motion.div
@@ -228,7 +248,7 @@ export default function Appointment() {
                 transition={{ duration: 0.25 }}
               >
                 <h3 className="font-heading text-xl text-foreground mb-6">
-                  Hizmet Seçin
+                  Hizmet Secin
                 </h3>
                 {(Object.keys(categoryLabels) as ServiceCategory[]).map(
                   (cat) => (
@@ -246,10 +266,10 @@ export default function Appointment() {
                                 setSelectedService(s.id);
                                 setSelectedStaff(null);
                               }}
-                              className={`flex items-center justify-between p-4 rounded-lg border transition-colors text-left ${
+                              className={`flex items-center justify-between p-4 rounded-2xl border transition-all duration-300 text-left ${
                                 selectedService === s.id
-                                  ? "border-primary bg-primary/5"
-                                  : "border-border hover:border-primary/30"
+                                  ? "border-primary bg-gradient-to-r from-rose-light/30 to-lavender-light/20 shadow-sm"
+                                  : "border-border/50 hover:border-primary/30 hover:bg-rose-light/10"
                               }`}
                             >
                               <div>
@@ -284,23 +304,25 @@ export default function Appointment() {
                 transition={{ duration: 0.25 }}
               >
                 <h3 className="font-heading text-xl text-foreground mb-6">
-                  Uzman Seçin
+                  Uzman Secin
                 </h3>
                 <div className="grid gap-3">
                   {availableStaff.map((s) => (
                     <button
                       key={s.id}
                       onClick={() => setSelectedStaff(s.id)}
-                      className={`flex items-center gap-4 p-4 rounded-lg border transition-colors text-left ${
+                      className={`flex items-center gap-4 p-5 rounded-2xl border transition-all duration-300 text-left ${
                         selectedStaff === s.id
-                          ? "border-primary bg-primary/5"
-                          : "border-border hover:border-primary/30"
+                          ? "border-primary bg-gradient-to-r from-rose-light/30 to-lavender-light/20 shadow-sm"
+                          : "border-border/50 hover:border-primary/30 hover:bg-rose-light/10"
                       }`}
                     >
-                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary/20 to-accent-light flex items-center justify-center shrink-0">
-                        <span className="font-heading italic text-sm text-primary-dark">
-                          {s.name.split(" ").map((w) => w[0]).join("")}
-                        </span>
+                      <div className="w-14 h-14 rounded-full bg-gradient-to-br from-primary to-accent p-[2px] shrink-0">
+                        <div className="w-full h-full rounded-full bg-card flex items-center justify-center">
+                          <span className="font-heading italic text-sm text-primary-dark">
+                            {s.name.split(" ").map((w) => w[0]).join("")}
+                          </span>
+                        </div>
                       </div>
                       <div>
                         <p className="font-body text-sm text-foreground font-medium">
@@ -325,7 +347,7 @@ export default function Appointment() {
                 transition={{ duration: 0.25 }}
               >
                 <h3 className="font-heading text-xl text-foreground mb-6">
-                  Tarih & Saat Seçin
+                  Tarih & Saat Secin
                 </h3>
 
                 {/* Date picker */}
@@ -344,10 +366,10 @@ export default function Appointment() {
                             setSelectedDate(d);
                             setSelectedTime(null);
                           }}
-                          className={`flex flex-col items-center px-4 py-3 rounded-lg border shrink-0 transition-colors ${
+                          className={`flex flex-col items-center px-4 py-3 rounded-2xl border shrink-0 transition-all duration-300 ${
                             isSelected
-                              ? "border-primary bg-primary/5"
-                              : "border-border hover:border-primary/30"
+                              ? "border-primary bg-gradient-to-b from-rose-light/40 to-lavender-light/20 shadow-sm"
+                              : "border-border/50 hover:border-primary/30"
                           }`}
                         >
                           <span className="font-body text-[10px] text-text-light uppercase">
@@ -377,12 +399,12 @@ export default function Appointment() {
                           key={slot.time}
                           disabled={!slot.available}
                           onClick={() => setSelectedTime(slot.time)}
-                          className={`py-2.5 rounded-lg border font-body text-sm transition-colors ${
+                          className={`py-2.5 rounded-xl border font-body text-sm transition-all duration-300 ${
                             !slot.available
-                              ? "border-border text-text-light/40 bg-background cursor-not-allowed line-through"
+                              ? "border-border/30 text-text-light/30 bg-background cursor-not-allowed line-through"
                               : selectedTime === slot.time
-                                ? "border-primary bg-primary/5 text-foreground"
-                                : "border-border text-foreground hover:border-primary/30"
+                                ? "border-primary bg-gradient-to-r from-rose-light/40 to-lavender-light/20 text-foreground shadow-sm"
+                                : "border-border/50 text-foreground hover:border-primary/30"
                           }`}
                         >
                           {slot.time}
@@ -403,11 +425,11 @@ export default function Appointment() {
                 transition={{ duration: 0.25 }}
               >
                 <h3 className="font-heading text-xl text-foreground mb-6">
-                  İletişim Bilgileri & Onay
+                  Iletisim Bilgileri & Onay
                 </h3>
 
                 {/* Summary */}
-                <div className="p-4 bg-accent-light/20 border border-accent-light rounded-lg mb-6">
+                <div className="p-5 bg-gradient-to-r from-rose-light/30 to-lavender-light/30 border border-primary/10 rounded-2xl mb-6">
                   <p className="font-body text-sm text-foreground font-medium">
                     {service?.name}
                   </p>
@@ -436,8 +458,8 @@ export default function Appointment() {
                       type="text"
                       value={customerName}
                       onChange={(e) => setCustomerName(e.target.value)}
-                      placeholder="Adınız Soyadınız"
-                      className="w-full px-4 py-3 border border-border rounded-lg font-body text-sm text-foreground bg-background placeholder:text-text-light/50 focus:outline-none focus:border-primary transition-colors"
+                      placeholder="Adiniz Soyadiniz"
+                      className="w-full px-5 py-3.5 border border-border/50 rounded-2xl font-body text-sm text-foreground bg-background placeholder:text-text-light/40 focus:outline-none focus:border-primary focus:shadow-[0_0_0_3px_rgba(212,168,176,0.1)] transition-all duration-300"
                     />
                   </div>
                   <div>
@@ -453,7 +475,7 @@ export default function Appointment() {
                       value={customerPhone}
                       onChange={(e) => setCustomerPhone(e.target.value)}
                       placeholder="05XX XXX XX XX"
-                      className="w-full px-4 py-3 border border-border rounded-lg font-body text-sm text-foreground bg-background placeholder:text-text-light/50 focus:outline-none focus:border-primary transition-colors"
+                      className="w-full px-5 py-3.5 border border-border/50 rounded-2xl font-body text-sm text-foreground bg-background placeholder:text-text-light/40 focus:outline-none focus:border-primary focus:shadow-[0_0_0_3px_rgba(212,168,176,0.1)] transition-all duration-300"
                     />
                   </div>
                 </div>
@@ -462,7 +484,7 @@ export default function Appointment() {
           </AnimatePresence>
 
           {/* Navigation */}
-          <div className="flex items-center justify-between mt-8 pt-6 border-t border-border">
+          <div className="flex items-center justify-between mt-8 pt-6 border-t border-border/30">
             <button
               onClick={() => setStep(step - 1)}
               disabled={step === 0}
@@ -480,10 +502,10 @@ export default function Appointment() {
               <button
                 onClick={() => canNext && setStep(step + 1)}
                 disabled={!canNext}
-                className={`flex items-center gap-1.5 px-6 py-2.5 rounded-lg font-body text-sm transition-colors ${
+                className={`flex items-center gap-1.5 px-7 py-3 rounded-full font-body text-sm transition-all duration-300 ${
                   canNext
-                    ? "bg-primary text-white hover:bg-primary-dark"
-                    : "bg-border text-text-light/50 cursor-not-allowed"
+                    ? "bg-gradient-to-r from-primary to-accent text-white hover:shadow-[0_4px_20px_rgba(212,168,176,0.4)]"
+                    : "bg-border/50 text-text-light/50 cursor-not-allowed"
                 }`}
               >
                 Devam
@@ -493,13 +515,13 @@ export default function Appointment() {
               <button
                 onClick={handleSubmit}
                 disabled={!canNext || isSubmitting}
-                className={`flex items-center gap-1.5 px-6 py-2.5 rounded-lg font-body text-sm transition-colors ${
+                className={`flex items-center gap-1.5 px-7 py-3 rounded-full font-body text-sm transition-all duration-300 ${
                   canNext && !isSubmitting
-                    ? "bg-primary text-white hover:bg-primary-dark"
-                    : "bg-border text-text-light/50 cursor-not-allowed"
+                    ? "bg-gradient-to-r from-primary to-accent text-white hover:shadow-[0_4px_20px_rgba(212,168,176,0.4)]"
+                    : "bg-border/50 text-text-light/50 cursor-not-allowed"
                 }`}
               >
-                {isSubmitting ? "Gönderiliyor..." : "Randevuyu Onayla"}
+                {isSubmitting ? "Gonderiliyor..." : "Randevuyu Onayla"}
                 <Check size={16} />
               </button>
             )}
