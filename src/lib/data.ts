@@ -67,7 +67,7 @@ export const services: Service[] = [
     duration_minutes: 60,
     price: 400,
     // Manikür yapılırken eller, tırnak törpüsü
-    image_url: "https://images.unsplash.com/photo-1440557653082-e67ffad744c0?w=800&q=80",
+    image_url: "https://images.unsplash.com/photo-1610992015732-2449b76344bc?w=800&q=80",
     is_active: true,
     sort_order: 5,
   },
@@ -92,7 +92,7 @@ export const services: Service[] = [
     duration_minutes: 30,
     price: 200,
     // Tırnak bakım aletleri close-up
-    image_url: "https://images.unsplash.com/photo-1583001931096-959e9a1a6223?w=800&q=80",
+    image_url: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=800&q=80",
     is_active: true,
     sort_order: 7,
   },
@@ -105,7 +105,7 @@ export const services: Service[] = [
     duration_minutes: 45,
     price: 350,
     // Bakımlı eller, doğal tırnaklar
-    image_url: "https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?w=800&q=80",
+    image_url: "https://images.unsplash.com/photo-1604654894610-df63bc536371?w=800&q=80",
     is_active: true,
     sort_order: 8,
   },
@@ -352,43 +352,43 @@ export const reviews: Review[] = [
 
 export const galleryImages = [
   {
+    src: "/images/salon-interior.jpg",
+    alt: "1 Dilek Tirnak salon ic mekan",
+  },
+  {
+    src: "/images/nail-station.jpg",
+    alt: "Tirnak bakim istasyonu ve oje raflari",
+  },
+  {
+    src: "/images/storefront.jpg",
+    alt: "1 Dilek Tirnak dis mekan giris",
+  },
+  {
     src: "https://images.unsplash.com/photo-1604654894610-df63bc536371?w=800&q=80",
-    alt: "Protez tırnak uygulaması",
+    alt: "Protez tirnak uygulamasi",
   },
   {
     src: "https://images.unsplash.com/photo-1607779097040-26e80aa78e66?w=800&q=80",
-    alt: "Nail art tasarımı",
+    alt: "Nail art tasarimi",
   },
   {
     src: "https://images.unsplash.com/photo-1632345031435-8727f6897d53?w=800&q=80",
-    alt: "Jel tırnak",
+    alt: "Jel tirnak",
   },
   {
     src: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&q=80",
-    alt: "Cilt bakım maskesi",
+    alt: "Cilt bakim maskesi",
   },
   {
     src: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=800&q=80",
-    alt: "Makyaj fırçaları",
+    alt: "Makyaj fircalari",
   },
   {
     src: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=800&q=80",
-    alt: "Makyaj uygulaması",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=800&q=80",
-    alt: "Cilt bakımı",
+    alt: "Makyaj uygulamasi",
   },
   {
     src: "https://images.unsplash.com/photo-1519014816548-bf5fe059798b?w=800&q=80",
     alt: "Oje renkleri",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=800&q=80",
-    alt: "Ruj koleksiyonu",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=800&q=80",
-    alt: "Cilt bakım ürünleri",
   },
 ];

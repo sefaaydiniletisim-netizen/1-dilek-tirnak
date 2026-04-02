@@ -115,10 +115,9 @@ export default function Gallery() {
               onClick={(e) => e.stopPropagation()}
             >
               <Image
-                src={galleryImages[lightboxIndex].src.replace(
-                  "w=800",
-                  "w=1400"
-                )}
+                src={galleryImages[lightboxIndex].src.includes("unsplash.com")
+                  ? galleryImages[lightboxIndex].src.replace("w=800", "w=1400")
+                  : galleryImages[lightboxIndex].src}
                 alt={galleryImages[lightboxIndex].alt}
                 width={1400}
                 height={900}
