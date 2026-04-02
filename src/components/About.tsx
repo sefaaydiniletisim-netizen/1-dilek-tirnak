@@ -18,7 +18,7 @@ export default function About() {
           <AnimatedSection>
             <div className="relative aspect-[4/5] rounded-xl overflow-hidden">
               <Image
-                src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&q=80"
+                src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=800&q=80"
                 alt="1 Dilek Tırnak stüdyo ortamı"
                 fill
                 className="object-cover"
