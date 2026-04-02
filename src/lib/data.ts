@@ -1,5 +1,35 @@
 import type { Service, Staff, Review } from "./types";
 
+// Tırnak close-up görselleri (yüz yok, sadece eller/tırnaklar)
+const nailImages = {
+  protez: "https://images.unsplash.com/photo-1604654894610-df63bc536371?w=800&q=80",
+  jel: "https://images.unsplash.com/photo-1632345031435-8727f6897d53?w=800&q=80",
+  shellac: "https://images.unsplash.com/photo-1604654894610-df63bc536371?w=800&q=80",
+  nailArt: "https://images.unsplash.com/photo-1607779097040-26e80aa78e66?w=800&q=80",
+  manikur: "https://images.unsplash.com/photo-1610992015732-2449b0ae0692?w=800&q=80",
+  pedikur: "https://images.unsplash.com/photo-1519014816548-bf5fe059798b?w=800&q=80",
+  onarim: "https://images.unsplash.com/photo-1632345031435-8727f6897d53?w=800&q=80",
+  bakim: "https://images.unsplash.com/photo-1607779097040-26e80aa78e66?w=800&q=80",
+};
+
+// Makyaj görselleri (close-up, ürün bazlı)
+const makeupImages = {
+  kas: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=800&q=80",
+  dudak: "https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=800&q=80",
+  gunluk: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=800&q=80",
+  gelin: "https://images.unsplash.com/photo-1457972729786-0411a3b2b626?w=800&q=80",
+  kirpikLifting: "https://images.unsplash.com/photo-1583001931096-959e9a1a6223?w=800&q=80",
+  ipekKirpik: "https://images.unsplash.com/photo-1512207846876-bb54ef5056fe?w=800&q=80",
+};
+
+// Cilt bakımı görselleri (close-up, tedavi bazlı)
+const skinImages = {
+  klasik: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&q=80",
+  hydra: "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=800&q=80",
+  temizleme: "https://images.unsplash.com/photo-1552693673-1bf958298935?w=800&q=80",
+  antiAging: "https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=800&q=80",
+};
+
 export const services: Service[] = [
   // Tırnak Hizmetleri
   {
@@ -10,8 +40,7 @@ export const services: Service[] = [
       "Profesyonel akrilik uygulaması ile uzun ömürlü ve doğal görünümlü protez tırnaklar.",
     duration_minutes: 150,
     price: 1200,
-    image_url:
-      "https://images.unsplash.com/photo-1604654894610-df63bc536371?w=800&q=80",
+    image_url: nailImages.protez,
     is_active: true,
     sort_order: 1,
   },
@@ -23,8 +52,7 @@ export const services: Service[] = [
       "UV ışığı ile sertleşen jel teknolojisi ile parlak ve dayanıklı tırnaklar.",
     duration_minutes: 120,
     price: 1000,
-    image_url:
-      "https://images.unsplash.com/photo-1632345031435-8727f6897d53?w=800&q=80",
+    image_url: nailImages.jel,
     is_active: true,
     sort_order: 2,
   },
@@ -36,8 +64,7 @@ export const services: Service[] = [
       "2-3 hafta boyunca parlak kalan, tırnaklara zarar vermeyen kalıcı oje uygulaması.",
     duration_minutes: 90,
     price: 600,
-    image_url:
-      "https://images.unsplash.com/photo-1519014816548-bf5fe059798b?w=800&q=80",
+    image_url: nailImages.shellac,
     is_active: true,
     sort_order: 3,
   },
@@ -49,8 +76,7 @@ export const services: Service[] = [
       "Kişiye özel, el çizimi veya transfer baskı ile benzersiz tırnak tasarımları.",
     duration_minutes: 120,
     price: 900,
-    image_url:
-      "https://images.unsplash.com/photo-1607779097040-26e80aa78e66?w=800&q=80",
+    image_url: nailImages.nailArt,
     is_active: true,
     sort_order: 4,
   },
@@ -61,8 +87,7 @@ export const services: Service[] = [
     description: "Tırnak şekillendirme, tırnak eti bakımı ve nemlendirme.",
     duration_minutes: 60,
     price: 400,
-    image_url:
-      "https://images.unsplash.com/photo-1440557653082-e67ffad744c0?w=800&q=80",
+    image_url: nailImages.manikur,
     is_active: true,
     sort_order: 5,
   },
@@ -74,8 +99,7 @@ export const services: Service[] = [
       "Ayak bakımı, nasır temizliği, tırnak şekillendirme ve nemlendirme.",
     duration_minutes: 60,
     price: 450,
-    image_url:
-      "https://images.unsplash.com/photo-1519014816548-bf5fe059798b?w=800&q=80",
+    image_url: nailImages.pedikur,
     is_active: true,
     sort_order: 6,
   },
@@ -86,8 +110,7 @@ export const services: Service[] = [
     description: "Kırık veya hasarlı tırnak onarımı ve güçlendirme.",
     duration_minutes: 30,
     price: 200,
-    image_url:
-      "https://images.unsplash.com/photo-1604654894610-df63bc536371?w=800&q=80",
+    image_url: nailImages.onarim,
     is_active: true,
     sort_order: 7,
   },
@@ -99,8 +122,7 @@ export const services: Service[] = [
       "Özel bakım ürünleri ile tırnak güçlendirme ve besleyici bakım.",
     duration_minutes: 45,
     price: 350,
-    image_url:
-      "https://images.unsplash.com/photo-1632345031435-8727f6897d53?w=800&q=80",
+    image_url: nailImages.bakim,
     is_active: true,
     sort_order: 8,
   },
@@ -113,8 +135,7 @@ export const services: Service[] = [
       "Microblading veya pudralama tekniği ile doğal görünümlü kalıcı kaş makyajı.",
     duration_minutes: 120,
     price: 3500,
-    image_url:
-      "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&q=80",
+    image_url: makeupImages.kas,
     is_active: true,
     sort_order: 1,
   },
@@ -125,8 +146,7 @@ export const services: Service[] = [
     description: "Dudaklara doğal renk ve dolgunluk katan kalıcı dudak makyajı.",
     duration_minutes: 120,
     price: 3000,
-    image_url:
-      "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=800&q=80",
+    image_url: makeupImages.dudak,
     is_active: true,
     sort_order: 2,
   },
@@ -138,8 +158,7 @@ export const services: Service[] = [
       "Doğal ve şık günlük makyaj uygulaması, özel etkinlikler için ideal.",
     duration_minutes: 60,
     price: 800,
-    image_url:
-      "https://images.unsplash.com/photo-1457972729786-0411a3b2b626?w=800&q=80",
+    image_url: makeupImages.gunluk,
     is_active: true,
     sort_order: 3,
   },
@@ -151,8 +170,7 @@ export const services: Service[] = [
       "Büyük gününüz için profesyonel gelin makyajı, prova dahil.",
     duration_minutes: 150,
     price: 5000,
-    image_url:
-      "https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=800&q=80",
+    image_url: makeupImages.gelin,
     is_active: true,
     sort_order: 4,
   },
@@ -164,8 +182,7 @@ export const services: Service[] = [
       "Doğal kirpiklerinizi kıvırma ve boyama ile belirginleştirin.",
     duration_minutes: 60,
     price: 700,
-    image_url:
-      "https://images.unsplash.com/photo-1583001931096-959e9a1a6223?w=800&q=80",
+    image_url: makeupImages.kirpikLifting,
     is_active: true,
     sort_order: 5,
   },
@@ -177,8 +194,7 @@ export const services: Service[] = [
       "Tek tek uygulanan ipek kirpikler ile yoğun ve doğal bir görünüm.",
     duration_minutes: 90,
     price: 1200,
-    image_url:
-      "https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?w=800&q=80",
+    image_url: makeupImages.ipekKirpik,
     is_active: true,
     sort_order: 6,
   },
@@ -191,8 +207,7 @@ export const services: Service[] = [
       "Derin temizlik, peeling, maske ve nemlendirme ile kapsamlı cilt bakımı.",
     duration_minutes: 90,
     price: 1500,
-    image_url:
-      "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&q=80",
+    image_url: skinImages.klasik,
     is_active: true,
     sort_order: 1,
   },
@@ -204,8 +219,7 @@ export const services: Service[] = [
       "Patentli teknoloji ile derin temizlik, nemlendirme ve cilt yenileme.",
     duration_minutes: 60,
     price: 2000,
-    image_url:
-      "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=800&q=80",
+    image_url: skinImages.hydra,
     is_active: true,
     sort_order: 2,
   },
@@ -217,8 +231,7 @@ export const services: Service[] = [
       "Profesyonel cilt temizleme ile gözeneklerin derinlemesine arındırılması.",
     duration_minutes: 60,
     price: 1000,
-    image_url:
-      "https://images.unsplash.com/photo-1552693673-1bf958298935?w=800&q=80",
+    image_url: skinImages.temizleme,
     is_active: true,
     sort_order: 3,
   },
@@ -230,8 +243,7 @@ export const services: Service[] = [
       "Yaşlanma karşıtı serumlar ve maskeler ile cildinizi gençleştirin.",
     duration_minutes: 90,
     price: 2500,
-    image_url:
-      "https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=800&q=80",
+    image_url: skinImages.antiAging,
     is_active: true,
     sort_order: 4,
   },
@@ -245,14 +257,14 @@ export const staff: Staff[] = [
     bio: "8 yılı aşkın deneyimiyle protez tırnak, jel tırnak ve nail art konusunda uzmanlaşmış kurucumuz.",
     avatar_url: null,
     specialties: [
-      "Protez Tırnak",
+      "Protez Tırnak (Akrilik)",
       "Jel Tırnak",
-      "Nail Art",
-      "Manikür",
+      "Nail Art (Özel Tasarım)",
+      "Manikür (Kuru/Islak)",
       "Pedikür",
       "Tırnak Onarımı",
-      "Tırnak Bakımı",
-      "Kalıcı Oje",
+      "Tırnak Bakımı (Güçlendirme)",
+      "Kalıcı Oje (Shellac)",
     ],
     is_active: true,
   },
@@ -363,27 +375,27 @@ export const galleryImages = [
     alt: "Profesyonel cilt bakımı",
   },
   {
-    src: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&q=80",
-    alt: "Kalıcı makyaj uygulaması",
+    src: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=800&q=80",
+    alt: "Makyaj ürünleri",
   },
   {
-    src: "https://images.unsplash.com/photo-1519014816548-bf5fe059798b?w=800&q=80",
-    alt: "Manikür ve oje uygulaması",
+    src: "https://images.unsplash.com/photo-1610992015732-2449b0ae0692?w=800&q=80",
+    alt: "Manikür uygulaması",
   },
   {
     src: "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=800&q=80",
     alt: "Hydrafacial cilt bakımı",
   },
   {
-    src: "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=800&q=80",
-    alt: "Profesyonel makyaj",
+    src: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=800&q=80",
+    alt: "Makyaj fırçaları ve ürünler",
   },
   {
-    src: "https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=800&q=80",
-    alt: "Gelin makyajı",
+    src: "https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=800&q=80",
+    alt: "Ruj ve dudak bakımı",
   },
   {
-    src: "https://images.unsplash.com/photo-1440557653082-e67ffad744c0?w=800&q=80",
+    src: "https://images.unsplash.com/photo-1519014816548-bf5fe059798b?w=800&q=80",
     alt: "Tırnak bakımı detay",
   },
 ];
