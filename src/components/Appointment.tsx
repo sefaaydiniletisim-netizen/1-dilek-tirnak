@@ -120,8 +120,8 @@ export default function Appointment() {
         body: JSON.stringify({
           customer_name: customerName.trim(),
           customer_phone: customerPhone.trim(),
-          service_id: service.id,
-          staff_id: staffMember.id,
+          service_name: service.name,
+          staff_name: staffMember.name,
           appointment_date: selectedDate.toISOString().split("T")[0],
           start_time: selectedTime,
           duration_minutes: service.duration_minutes,
