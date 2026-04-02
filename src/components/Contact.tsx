@@ -22,7 +22,8 @@ const contactInfo = [
   {
     icon: Phone,
     label: "Telefon",
-    value: "Telefon bilgisi için Instagram'dan ulaşın",
+    value: "0544 321 06 81",
+    href: "tel:+905443210681",
   },
   {
     icon: Clock,

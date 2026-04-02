@@ -69,6 +69,10 @@ export default function Footer() {
                 @1dilektirnak
               </a>
               <p className="flex items-center gap-2.5 font-body text-sm">
+                <Phone size={16} />
+                0544 321 06 81
+              </p>
+              <p className="flex items-center gap-2.5 font-body text-sm">
                 <MapPin size={16} />
                 Halkalı, Küçükçekmece, İstanbul
               </p>
