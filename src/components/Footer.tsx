@@ -69,12 +69,8 @@ export default function Footer() {
                 @1dilektirnak
               </a>
               <p className="flex items-center gap-2.5 font-body text-sm">
-                <Phone size={16} />
-                0212 XXX XX XX
-              </p>
-              <p className="flex items-center gap-2.5 font-body text-sm">
                 <MapPin size={16} />
-                Nişantaşı, İstanbul
+                Halkalı, Küçükçekmece, İstanbul
               </p>
             </div>
           </div>

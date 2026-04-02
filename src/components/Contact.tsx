@@ -17,12 +17,12 @@ const contactInfo = [
   {
     icon: MapPin,
     label: "Adres",
-    value: "Nişantaşı, Şişli, İstanbul",
+    value: "Halkalı Merkez Mah. Halkalı Meydan Rezidans A Blok Kat: 6 D: 65, Küçükçekmece, İstanbul",
   },
   {
     icon: Phone,
     label: "Telefon",
-    value: "0212 XXX XX XX",
+    value: "Telefon bilgisi için Instagram'dan ulaşın",
   },
   {
     icon: Clock,
@@ -51,18 +51,18 @@ export default function Contact() {
         </AnimatedSection>
 
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
-          {/* Map */}
+          {/* Map - Halkalı Meydan Evleri, Küçükçekmece */}
           <AnimatedSection>
             <div className="relative aspect-[4/3] rounded-xl overflow-hidden border border-border">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12036.153942924583!2d28.987!3d41.048!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cab7650656bd63%3A0x8ca058b28c20b6c3!2zTmnFn2FudGHFn8Sxw4fEsXJhxJ9hbg!5e0!3m2!1str!2str!4v1"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3010.5!2d28.7775!3d41.0195!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14caa3f5c0a6b1a7%3A0x1234567890abcdef!2zSGFsa2FsxLEgTWV5ZGFuIEV2bGVyaQ!5e0!3m2!1str!2str!4v1"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="1 Dilek Tırnak Konum"
+                title="1 Dilek Güzellik - Halkalı, Küçükçekmece, İstanbul"
                 className="absolute inset-0"
               />
             </div>
