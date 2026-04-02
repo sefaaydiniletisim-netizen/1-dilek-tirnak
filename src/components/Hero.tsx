@@ -2,24 +2,23 @@
 
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
+import Image from "next/image";
 
 export default function Hero() {
   return (
     <section className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
-      {/* Background video */}
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover"
-        poster="/images/salon-interior.jpg"
-      >
-        <source src="/videos/video1.mp4" type="video/mp4" />
-      </video>
+      {/* Background image - high quality nail close-up */}
+      <Image
+        src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=1920&q=90"
+        alt="Profesyonel tirnak bakimi"
+        fill
+        className="object-cover"
+        priority
+        sizes="100vw"
+      />
 
       {/* Gradient overlays for depth */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#3D2B1F]/70 via-[#3D2B1F]/40 to-[#3D2B1F]/80" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#3D2B1F]/65 via-[#3D2B1F]/35 to-[#3D2B1F]/75" />
       <div className="absolute inset-0 bg-gradient-to-r from-[#D4A8B0]/10 via-transparent to-[#C8A4D4]/10" />
 
       {/* Decorative floating elements */}
